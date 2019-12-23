@@ -17,8 +17,9 @@ router.get('/',auth.isAuthenticated,auth.isManager, (req, res) => {
 });
 
 router.get('/list',auth.isAuthenticated,auth.isManager, (req, res) => {
-  Station.getAll().then((stations) => {
-    console.log(stations);
+const idm = req.session.id_t;
+  Station.getByIdm(idm).then((stations) => {
+    // console.log(stations);
     res.render('manager/registerWorkStationHome', { title: 'Lista de Estações de Trabalho', layout: 'layoutdashboardmanager', stations });
   }).catch((error)=> {
     res.redirect('/error');
@@ -46,8 +47,9 @@ router.get('/edit/:id',auth.isAuthenticated,auth.isManager, (req, res) => {
   });
 });
 
-router.post('/signup',auth.isAuthenticated,auth.isManager, function(req, res, next){
+router.post('/signup', function(req, res, next){
   const ativa = req.body.station;
+  ativa.id_m = req.session.id_t;
   Station.create(ativa).then((id) => {
     res.redirect('/station/list');
     }).catch((error) =>{
@@ -55,7 +57,16 @@ router.post('/signup',auth.isAuthenticated,auth.isManager, function(req, res, ne
   });
 });
 
-router.post('/:id',auth.isAuthenticated, auth.isManager,(req, res) => {
+router.post('/delete/:id' , (req,res) => {
+  Station.delete(req.params.id).then((resolve) => {
+    res.redirect('/station/list');
+  }).catch((error) => {
+    console.log(error);
+    res.redirect('/error');
+  });
+});
+
+router.post('/:id',(req, res) => {
   const station = req.body.station;
   const stationId = req.params.id;
   Station.getById(req.params.id).then((oldStation) => {

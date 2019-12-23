@@ -20,7 +20,7 @@ module.exports = {
 // Essa função confere se o tipo do usuário é "ClienteADM" e permite que ele entre nas páginas disponíveis apenas para ClienteADM
 // A const type identifica qual o tipo do usuário que está logado e compara essa string com "ClienteADM", se o usuário for ClienteADM ele poderá acessar a página desejada, caso contrário, ele é redirecionado para a página de login
   isClienteADM: (req, res, next) => {
-    const type = req.session.user.type;
+    const type = req.session.type;
     if(type === 'ClienteADM'){
       next();
     }
@@ -33,7 +33,7 @@ module.exports = {
 // A const type identifica qual o tipo do usuário que está logado e compara essa string com "ADM", se o usuário for gerente ele poderá acessar a página desejada, caso contrário, ele é redirecionado para a página de login
 
   isADM: (req, res, next) => {
-    const type = req.session.user.type;
+    const type = req.session.type;
     if(type === 'ADM'){
       next();
     }
@@ -46,38 +46,12 @@ module.exports = {
 // A const type identifica qual o tipo do usuário que está logado e compara essa string com "Gestor", se o usuário for convenio ele poderá acessar a página desejada, caso contrário, ele é redirecionado para a página de login
 
   isManager: (req, res, next) => {
-    const type = req.session.user.type;
+    const type = req.session.type;
     if(type === 'Gestor'){
       next();
     }
     else {
       res.redirect('/');
-    }
-  },
-
-// Essa função confere se o tipo do usuário é "Analista" e permite que ele entre nas páginas disponíveis apenas para analistas
-// A const type identifica qual o tipo do usuário que está logado e compara essa string com "Analista", se o usuário for analista ele poderá acessar a página desejada, caso contrário, ele é redirecionado para a página de clientes
-
-  isAnalyst: (req, res, next) => {
-    const type = req.session.user;
-    if(type === 'Analista'){
-      next();
-    }
-    else {
-      res.redirect('/user');
-    }
-  },
-
-// Essa função confere se o tipo do usuário é "administrador" e permite que ele entre nas páginas disponíveis apenas para administradores
-// A const type identifica qual o tipo do usuário que está logado e compara essa string com "Admin", se o usuário for administrador ele poderá acessar a página desejada, caso contrário, ele é redirecionado para a página de clientes
-
-  isAdmin: (req, res, next) => {
-    const type = req.session.user;
-    if(type === 'Admin'){
-      next();
-    }
-    else {
-      res.redirect('/user');
     }
   },
 }

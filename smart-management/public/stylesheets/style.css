@@ -7024,7 +7024,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   text-align: center;
   background: #f0f4f7;
-  padding-top: 60px;
+  padding-top: 40px;
   display: flex;
   min-height: 100vh;
   flex-direction: column; }
@@ -7033,6 +7033,16 @@ a {
   color: #00B7FF; }
 
 /*Page Login inicial*/
+.maion-alert {
+  position: fixed;
+  text-align: center;
+  top: 10px;
+  right: 10px;
+  margin-left: 10px; }
+
+.fade {
+  opacity: none; }
+
 .img-login {
   background-image: url("/images/imagem_back.jpg");
   background-attachment: fixed;

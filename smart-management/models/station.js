@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 const StationSchema = new mongoose.Schema({
     codeStation: {
       type: String,
-      unique: true
+      // unique: true
     }, //trabalhar com o erro depois em cach error
     // devicecode: String,
+    id_m: {
+      type: String,
+    },
     idesp: String,
     dataesp: {
       type: String,
@@ -115,6 +118,20 @@ class Station {
     });
     }
 
+      /**
+    * Get a Station by id_m
+    * @param {string} id - id_m
+    * @returns {Object} - Station Document Data
+    */
+    static getByIdm(id) {
+    return new Promise((resolve, reject) => {
+     StationModel.find({ id_m: id }).exec().then((result) => {
+       resolve(result);
+     }).catch((err) => {
+       reject(err);
+     });
+    });
+    }
    /**
     * Create a new Station
     * @param {Object} Station - Station Document Data
@@ -154,7 +171,7 @@ class Station {
    */
    static delete(id) {
     return new Promise((resolve, reject) => {
-      StationModel.findByIdAndUpdate(id, { deleted: 1 }).then(() => {
+      StationModel.findOneAndDelete({_id: id}).then(() => {
         resolve();
       }).catch((err) => {
         reject(err);

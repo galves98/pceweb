@@ -10,12 +10,12 @@ const User = require('../models/user');
 const router = express.Router();
 
 router.get('/signup',auth.isAuthenticated,auth.isADM, function(req, res, next) {
-  res.render('admin/clientsRegistration', { title: 'Cadastro de Clientes' });
+  res.render('admin/clientsRegistration', { title: 'Cadastro de Clientes', layout:'layoutdashboardclientadm'});
 });
 
 router.get('/list',auth.isAuthenticated,auth.isADM, (req, res) => {
   Client.getAll().then((clients) => {
-    res.render('admin/clientsList', { title: 'Lista de Clientes', clients });
+    res.render('admin/clientsList', { title: 'Lista de Clientes', layout:'layoutdashboardclientadm', clients });
   }).catch((error)=> {
     res.redirect('/error');
     console.log(error);
@@ -24,7 +24,7 @@ router.get('/list',auth.isAuthenticated,auth.isADM, (req, res) => {
 
 router.get('/edit/:id',auth.isAuthenticated,auth.isADM, (req, res) => {
   Client.getById(req.params.id).then((client) => {
-    res.render('admin/clientsRegistrationEdit', { title: 'Edição de Perfil', client });
+    res.render('admin/clientsRegistrationEdit', { title: 'Edição de Perfil', layout:'layoutdashboardclientadm',client });
   });
 });
 
@@ -86,7 +86,7 @@ router.post('/delete/:id' , (req,res) => {
 router.post('/:id', (req, res) => {
   const client = req.body.client;
   Client.update(req.params.id, client).then(() => {
-    res.redirect('/client/list');
+    res.redirect('/client/list',{ title: 'Lista de Clientes', layout:'layoutdashboardclientadm'});
   }).catch((error) => {
     console.log(error);
     res.redirect('/error');

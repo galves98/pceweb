@@ -78,7 +78,7 @@ class Sector {
    */
    static delete(id) {
     return new Promise((resolve, reject) => {
-      SectorModel.findByIdAndUpdate(id, { deleted: 1 }).then(() => {
+      SectorModel.findOneAndDelete({_id: id}).then(() => {
         resolve();
       }).catch((err) => {
         reject(err);

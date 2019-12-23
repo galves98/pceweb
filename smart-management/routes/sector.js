@@ -53,7 +53,16 @@ router.get('/edit/:id',auth.isAuthenticated,auth.isClienteADM, (req, res) => {
   });
 });
 
-router.post('/:id',auth.isAuthenticated,auth.isClienteADM, (req, res) => {
+router.post('/delete/:id' , (req,res) => {
+  Sector.delete(req.params.id).then((resolve) => {
+    res.redirect('sector/list')
+  }).catch((error) => {
+    console.log(error);
+    res.redirect('/error');
+  });
+});
+
+router.post('/:id', (req, res) => {
   const sector = req.body.sector;
   console.log(sector);
   Manager.getById(sector.idManager).then((gestor) => {

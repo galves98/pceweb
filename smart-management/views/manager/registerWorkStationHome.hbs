@@ -13,16 +13,15 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">POR DATA</a>
                     <a class="dropdown-item" href="#">POR MAC</a>
-                    <a class="dropdown-item" href="#">POR ...</a>
                     <div class="dropdown-divider"></div>
                 </div>
             </div>
             <table class="table table-bordered table-responsive-sm mt-4">
-              <tbody id="myTable">
+              <tbody id="myTable" class="element">
                 {{#each stations}}
                 <tr>
-                  <th scope="row" class="font-book text-center" onclick="location.href='/station/edit/{{id}}'">{{codeStation}}</th>
-                  <th width="50" scope="row" class="font-book text-center" onclick="location.href='/station/edit/{{id}}'">. . .</th>
+                  <th scope="row" class="font-book text-center " onclick="location.href='/station/edit/{{id}}'">{{codeStation}}</th>
+                  <th width="50" scope="row" class="font-book text-center " onclick="location.href='/station/edit/{{id}}'">. . .</th>
                 </tr>
                 {{/each}}
               </tbody>
@@ -31,3 +30,4 @@
    </div>
 </div>
 <br>
+<script type="text/javascript" src="/javascripts/edit.js">  </script>
