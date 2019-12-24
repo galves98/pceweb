@@ -16,7 +16,7 @@ router.get('/signup',auth.isAuthenticated,auth.isClienteADM, function(req, res, 
 });
 
 router.get('/list',auth.isAuthenticated,auth.isClienteADM, (req, res) => {
-  Manager.getAll().then((managers)=>{
+  Manager.getAll().then((managers) => {
     res.render('client/managerList', { title: 'Lista de Gestores',layout: 'layoutdashboardclientadm', managers });
   }).catch((error)=> {
     res.redirect('/error');

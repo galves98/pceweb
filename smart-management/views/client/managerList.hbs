@@ -13,8 +13,7 @@
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">POR DATA</a>
-                    <a class="dropdown-item" href="#">POR MEC</a>
-                    <a class="dropdown-item" href="#">POR ...</a>
+                    <a class="dropdown-item" href="#">POR MAC</a>
                     <div class="dropdown-divider"></div>
                 </div>
             </div>
@@ -25,7 +24,7 @@
                 </div>
             </div>
             <table class="table table-bordered table-responsive-sm mt-4">
-              <tbody id="myTable">
+              <tbody id="myTable" class="element">
                 {{#each managers}}
                 <tr>
                   <th scope="row" class="font-book text-center" onclick="location.href='/manager/edit/{{id}}'">{{name}}</th>
@@ -38,3 +37,4 @@
    </div>
 </div>
 <br><br><br><br><br>
+<script type="text/javascript" src="/javascripts/edit.js">  </script>

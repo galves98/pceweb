@@ -21,7 +21,7 @@ router.post('/signup',auth.isAuthenticated,auth.isClienteADM, function(req, res,
   const ativa = req.body.sector;
   Manager.getById(ativa.idManager).then((gestor) => {
     ativa.manager = gestor.name;
-    Sector.create(ativa).then((id) =>{
+    Sector.create(ativa).then((id) => {
       res.redirect('/sector/list');
     }).catch((error) => {
       res.redirect('/error');
@@ -34,8 +34,8 @@ router.post('/signup',auth.isAuthenticated,auth.isClienteADM, function(req, res,
 });
 
 router.get('/list',auth.isAuthenticated,auth.isClienteADM, (req, res) => {
-  Sector.getAll().then((sectors)=>{
-    res.render('client/sectorslist', { title: 'Lista de Setores',layout: 'layoutdashboardclientadm', sectors });
+  Sector.getAll().then((sectors) => {
+    res.render('client/sectorslist', { title: 'Lista de Setores', layout: 'layoutdashboardclientadm', sectors });
   }).catch((error)=> {
     res.redirect('/error');
     console.log(error);

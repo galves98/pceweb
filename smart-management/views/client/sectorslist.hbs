@@ -16,7 +16,6 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">POR DATA</a>
                     <a class="dropdown-item" href="#">POR MAC</a>
-                    <a class="dropdown-item" href="#">POR ...</a>
                     <div class="dropdown-divider"></div>
                 </div>
             </div>
@@ -27,7 +26,7 @@
                 </div>
             </div>
             <table class="table table-bordered table-responsive-sm mt-4">
-              <tbody id="myTable">
+              <tbody id="myTable" class="element">
                 {{#each sectors}}
                 <tr>
                   <th scope="row" class="font-book text-center" onclick="location.href='/sector/edit/{{id}}'">{{name}}</th>
@@ -40,3 +39,4 @@
    </div>
 </div>
 <br>
+<script type="text/javascript" src="/javascripts/edit.js">  </script>
